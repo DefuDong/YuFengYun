@@ -1,0 +1,46 @@
+//
+//  NETRequest_Disscuss.m
+//  YunHuaShiDai
+//
+//  Created by 董德富 on 13-8-7.
+//  Copyright (c) 2013年 董德富. All rights reserved.
+//
+
+#import "NETRequest_Media_Disscuss.h"
+
+@implementation NETRequest_Media_Disscuss
+
+- (NSDictionary *)build {
+    if (self.mediaId) {
+        [self.requestDic setObject:self.mediaId forKey:@"mediaId"];
+    }
+    if (self.type) {
+        [self.requestDic setObject:self.type forKey:@"type"];
+    }
+    NSMutableDictionary *pageInfo = [NSMutableDictionary dictionaryWithCapacity:2];
+    if (self.pageIndex) {
+        [pageInfo setObject:self.pageIndex forKey:@"pageIndex"];
+    }
+    if (self.pageSize) {
+        [pageInfo setObject:self.pageSize forKey:@"pageSize"];
+    }else {
+        [pageInfo setObject:@20 forKey:@"pageSize"];
+    }
+    [self.requestDic setObject:pageInfo forKey:@"pageInfo"];
+    
+    return self.requestDic;
+}
+
+- (NSDictionary *)loadMediaId:(NSNumber *)mediaId
+                         type:(NSString *)type
+                    pageIndex:(NSNumber *)pageIndex
+                     pageSize:(NSNumber *)pageSize {
+    self.mediaId = mediaId;
+    self.type = type;
+    self.pageIndex = pageIndex;
+    self.pageSize = pageSize;
+    return [self build];
+}
+
+
+@end

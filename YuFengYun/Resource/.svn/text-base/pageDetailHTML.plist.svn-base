@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>head</key>
+	<string>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+&lt;title&gt;Untitled Document&lt;/title&gt;
+&lt;style&gt;
+    html{
+        overflow-x:hidden;
+    }
+    span.inf{
+        font-size:12px;
+        margin-right:5px;
+        color:#666;
+    }
+    span.line{
+        font-size:10px;
+        margin-right:5px;
+        color:#666;
+    }
+    p{
+        margin:10px 0;
+    }
+    img{
+        width:280px;
+    }
+&lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body style=&quot;margin: 0;padding: 0; width:320px; overflow-x:hidden;&quot;&gt;
+&lt;div&gt;
+    &lt;div&gt;
+    	&lt;img style=&quot;width:320px;&quot; src=&quot;%@&quot; /&gt;
+        &lt;div style=&quot;color:#000; width:290px; padding:15px; background-color:#28a3d3;&quot;&gt;&lt;h1 style=&quot;font-size:18px; margin:0;line-height:26px;padding:0;color:#fff;&quot;&gt;%@&lt;/h1&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div style=&quot;width:290px; padding:5px 15px 0 15px;&quot;&gt;
+        &lt;h2 style=&quot;font-weight:normal; margin:0; padding:0;line-height:12px;height:12px;&quot;&gt;&lt;span class=&quot;inf&quot;&gt;%@&lt;/span&gt;&lt;span class=&quot;line&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;inf&quot;&gt;%@ &lt;/span&gt;&lt;span class=&quot;line&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;inf&quot;&gt;%@&lt;/span&gt;&lt;/h2&gt;
+    &lt;/div&gt;
+    &lt;div style=&quot;width:290px; padding:0 15px 0 15px;line-height:%@px;font-size:%@px;&quot;&gt;
+        	%@
+    &lt;/div&gt;
+    %@
+</string>
+	<key>tuijian</key>
+	<string>&lt;div style=&quot;width:290px; padding:8px 15px; background-color:#28a3d3;&quot;&gt;&lt;h1 style=&quot;font-size:18px; padding:0; margin:0;color:#fff;&quot;&gt;热门推荐&lt;/h1&gt;&lt;/div&gt;
+&lt;div style=&quot;width:290px; padding:15px 15px 50px 15px;background-color:#f1f1f1;&quot;&gt;
+    &lt;ul style=&quot;list-style:none; margin:0; padding:0;&quot;&gt;
+        &lt;li&gt;&lt;a href=&quot;%@&quot; style=&quot;display:block; text-decoration:none; padding:15px 0; border-bottom:1px solid #e5e5e5;&quot;&gt;&lt;div style=&quot;float:left;&quot;&gt;&lt;h1 style=&quot;font-size:16px; padding:0; margin:0; color:#28a3d3;&quot;&gt;%@&lt;/h1&gt;&lt;h1 style=&quot;font-size:14px; padding:0; margin:0; color:#999;&quot;&gt;%@&lt;/h1&gt;&lt;/div&gt;&lt;div style=&quot;clear:both;&quot;&gt;&lt;/div&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;%@&quot; style=&quot;display:block; text-decoration:none; padding:15px 0; border-bottom:1px solid #e5e5e5;&quot;&gt;&lt;div style=&quot;float:left;&quot;&gt;&lt;h1 style=&quot;font-size:16px; padding:0; margin:0; color:#28a3d3;&quot;&gt;%@&lt;/h1&gt;&lt;h1 style=&quot;font-size:14px; padding:0; margin:0; color:#999;&quot;&gt;%@&lt;/h1&gt;&lt;/div&gt;&lt;div style=&quot;clear:both;&quot;&gt;&lt;/div&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;%@&quot; style=&quot;display:block; text-decoration:none; padding:15px 0;&quot;&gt;&lt;div style=&quot;float:left;&quot;&gt;&lt;h1 style=&quot;font-size:16px; padding:0; margin:0; color:#28a3d3;&quot;&gt;%@&lt;/h1&gt;&lt;h1 style=&quot;font-size:14px; padding:0; margin:0; color:#999;&quot;&gt;%@&lt;/h1&gt;&lt;/div&gt;&lt;div style=&quot;clear:both;&quot;&gt;&lt;/div&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</string>
+	<key>end</key>
+	<string>&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</string>
+</dict>
+</plist>

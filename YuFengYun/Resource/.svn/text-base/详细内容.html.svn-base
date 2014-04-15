@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Untitled Document</title>
+        <style>
+            html{
+                overflow-x:hidden;
+            }
+        span.inf{
+            font-size:12px;
+            margin-right:5px;
+            color:#666;
+            padding-left:15px;
+            color:#949494;
+        }
+        span.come{
+            background:url(%@) no-repeat
+        }
+        span.user{
+            background:url(%@) no-repeat
+        }
+        span.clo{
+            background: url(%@) no-repeat
+        }
+        span.line{
+            font-size:10px;
+            margin-right:5px;
+            color:#666;
+        }
+        p{
+            margin:10px 0;
+        }
+        img{
+            width:280px;
+        }
+        .sport {
+            background: url("sport2.png") no-repeat scroll 50% 50% rgba(0, 0, 0, 0);
+            display: block;
+            padding: 6px;
+        }
+        .fl{
+            float:left;
+        }
+        .clear{
+            clear:both;
+        }
+        p a{
+            color:#0093DA;
+        }
+        </style>
+    </head>
+    
+    <body style="margin: 0;padding: 0; width:320px; overflow-x:hidden;">
+        <div>
+            <div>
+                <img style="width:320px;" src="%@" />
+                <div style="color:#000; width:290px; margin:15px 10px 10px 10px; border-bottom:1px dotted #ccc;"><h1 style="font-size:18px; margin:0;line-height:26px;padding:0;color:#333;">%@</h1>
+                    <div style="margin-bottom:15px; margin-top:5px;">
+                        <h2 style="font-weight:normal; margin:0; padding:0;line-height:12px;height:12px;"><span class="inf come fl">%@</span><span class="sport fl" style="margin-right:3px;"></span> <span class="inf fl user">%@</span><span class="sport fl" style="margin-right:3px;"></span><span class="inf fl clo">%@</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div style="width:290px; padding:0 15px 0 15px;line-height:%@px;font-size:%@px; color:#646368;">
+                %@
+            </div>
+%@

@@ -1,0 +1,8 @@
+<div style="width:290px; padding:8px 15px; background-color:#0093DA;"><h1 style="font-size:18px; padding:0; margin:0;color:#fff;">热门推荐</h1></div>
+<div style="width:290px; padding:0px 15px 0px 15px;">
+    <ul style="list-style:none; margin:0; padding:0;">
+        <li><a href="%@" style="display:block; text-decoration:none; padding:15px 0; border-bottom:1px dotted #ccc;"><div style="float:left;"><h1 style="font-size:16px; padding:0; margin:0; color:#0093DA;">%@</h1><h1 style="font-size:14px; padding:0; margin:0; color:#999;">%@</h1></div><div style="clear:both;"></div></a></li>
+        <li><a href="%@" style="display:block; text-decoration:none; padding:15px 0; border-bottom:1px dotted #ccc;"><div style="float:left;"><h1 style="font-size:16px; padding:0; margin:0; color:#0093DA;">%@</h1><h1 style="font-size:14px; padding:0; margin:0; color:#999;">%@</h1></div><div style="clear:both;"></div></a></li>
+        <li><a href="%@" style="display:block; text-decoration:none; padding:15px 0;"><div style="float:left;"><h1 style="font-size:16px; padding:0; margin:0; color:#0093DA;">%@ </h1><h1 style="font-size:14px; padding:0; margin:0; color:#999;">%@</h1></div><div style="clear:both;"></div></a></li>
+    </ul>
+</div>
