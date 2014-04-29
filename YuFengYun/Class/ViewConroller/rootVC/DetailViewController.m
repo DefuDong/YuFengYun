@@ -307,32 +307,15 @@
                                              completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
                                                  [wself hideHUD:0];
                                                  
-                                                 [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
-                                                 [UMSocialConfig setWXAppId:kWeixinAppID url:wself.pageDetail.articleLink];
-                                                 [UMSocialConfig setQQAppId:kQQAppKey url:wself.pageDetail.articleLink importClasses:@[[QQApiInterface class],[TencentOAuth class]]];
-                                                 
                                                  NSString *shareText = [NSString stringWithFormat:@"%@\n%@\n%@",
                                                                         wself.pageDetail.articleShortTitle,
                                                                         wself.pageDetail.articleSynopsis,
                                                                         wself.pageDetail.articleLink];
                                                  
-                                                 NSArray *shareTo = @[UMShareToSina,
-                                                                      UMShareToTencent,
-                                                                      UMShareToEmail,
-                                                                      UMShareToSms,
-                                                                      UMShareToWechatSession,
-                                                                      UMShareToWechatTimeline,
-                                                                      UMShareToQQ,
-                                                                      UMShareToQzone];
-                                                 //如果得到分享完成回调，需要传递delegate参数
-                                                 [UMSocialSnsService presentSnsIconSheetView:wself
-                                                                                      appKey:kUMAppKey
-                                                                                   shareText:shareText
-                                                                                  shareImage:image
-                                                                             shareToSnsNames:shareTo
-                                                                                    delegate:wself];
-                                                 
-                                                 
+                                                 [wself shareUmengWithString:shareText
+                                                                       image:image
+                                                                         url:wself.pageDetail.articleLink
+                                                                    delegate:wself];
                                              }];
 }
 

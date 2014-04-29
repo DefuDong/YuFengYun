@@ -482,30 +482,14 @@
                                                   progress:nil
                                                  completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
                                                      
-                                                     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
-                                                     [UMSocialConfig setWXAppId:kWeixinAppID url:wself.pictureData.link];
-                                                     [UMSocialConfig setQQAppId:kQQAppKey url:wself.pictureData.link importClasses:@[[QQApiInterface class],[TencentOAuth class]]];
-                                                     
                                                      NSString *shareText = [NSString stringWithFormat:@"%@\n%@",
                                                                             wself.pictureData.atlasSynopsis,
                                                                             wself.pictureData.link];
                                                      
-                                                     NSArray *shareTo = @[UMShareToSina,
-                                                                          UMShareToTencent,
-                                                                          UMShareToEmail,
-                                                                          UMShareToSms,
-                                                                          UMShareToWechatSession,
-                                                                          UMShareToWechatTimeline,
-                                                                          UMShareToQQ,
-                                                                          UMShareToQzone];
-                                                     //如果得到分享完成回调，需要传递delegate参数
-                                                     [UMSocialSnsService presentSnsIconSheetView:wself
-                                                                                          appKey:kUMAppKey
-                                                                                       shareText:shareText
-                                                                                      shareImage:image
-                                                                                 shareToSnsNames:shareTo
-                                                                                        delegate:wself];
-                                                     
+                                                     [wself shareUmengWithString:shareText
+                                                                           image:image
+                                                                             url:wself.pictureData.link
+                                                                        delegate:wself];
                                                      
                                                  }];
     }

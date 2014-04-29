@@ -31,6 +31,8 @@
 //#import "iVersion.h"r
 #import "BaiduMobStat.h"
 #import "UMSocial.h"
+#import "UMSocialWechatHandler.h"
+#import "UMSocialQQHandler.h"
 #import "MobClick.h"
 
 @implementation AppDelegate
@@ -171,28 +173,32 @@
     [statTracker startWithAppId:kBaiduAppKey];//设置您在mtj网站上添加的app的appkey
 }
 - (void)_umSocoalShare {
+    //打开调试log的开关
+#ifdef DEBUG
+    [UMSocialData openLog:YES];
+#endif
+    
+    //设置友盟社会化组件appkey
     [UMSocialData setAppKey:kUMAppKey];
     
-//    [UMSocialData openLog:YES];
-    
-    //设置微信AppId，url地址传nil，将默认使用友盟的网址
-    [UMSocialConfig setWXAppId:kWeixinAppID url:kURLConnect];
-//    [UMSocialData defaultData].extConfig.title = @"朋友圈分享内容";
     //打开Qzone的SSO开关
-    [UMSocialConfig setSupportQzoneSSO:YES importClasses:@[[QQApiInterface class],[TencentOAuth class]]];
-    //设置手机QQ的AppId，url传nil，将使用友盟的网址
-    [UMSocialConfig setQQAppId:kQQAppKey url:kURLConnect importClasses:@[[QQApiInterface class],[TencentOAuth class]]];
+    [UMSocialQQHandler setSupportQzoneSSO:YES];
+    //设置手机QQ的AppId，指定你的分享url，若传nil，将使用友盟的网址
+    [UMSocialQQHandler setQQWithAppId:kQQAppKey appKey:kQQAppSecret url:kURLConnect];
     //打开新浪微博的SSO开关
     [UMSocialConfig setSupportSinaSSO:YES];
     
-    [UMSocialConfig setFinishToastIsHidden:YES position:UMSocialiToastPositionCenter];
+    //设置微信AppId，url地址传nil，将默认使用友盟的网址
+    [UMSocialWechatHandler setWXAppId:kWeixinAppID url:kURLConnect];
     
-    [UMSocialConfig setFollowWeiboUids:@{UMShareToSina: @"2747278047", UMShareToTencent: @"yufengyunkeji"}];
+    [UMSocialConfig setFinishToastIsHidden:NO position:UMSocialiToastPositionCenter];
+    
+    [UMSocialConfig setFollowWeiboUids:@{UMShareToSina:@"2747278047", UMShareToTencent: @"yufengyunkeji"}];
     
     //使用友盟统计
     [MobClick startWithAppkey:kUMAppKey];
     [MobClick checkUpdate];
-//    [MobClick setLogEnabled:YES];
+    //    [MobClick setLogEnabled:YES];
 }
 
 

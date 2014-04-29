@@ -183,31 +183,14 @@ static NSString *baseVideoUrl = @"http://yuntv.letv.com/bcloud.html?";
                                                 
                                                  [self hideHUD:0];
                                                  
-                                                 [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
-                                                 [UMSocialConfig setWXAppId:kWeixinAppID url:wself.videoDetail.link];
-                                                 [UMSocialConfig setQQAppId:kQQAppKey url:wself.videoDetail.link importClasses:@[[QQApiInterface class],[TencentOAuth class]]];
-                                                 
                                                  NSString *shareText = [NSString stringWithFormat:@"%@\n%@",
                                                                         wself.videoDetail.videoName,
                                                                         wself.videoDetail.link];
                                                  
-                                                 NSArray *shareTo = @[UMShareToSina,
-                                                                      UMShareToTencent,
-                                                                      UMShareToEmail,
-                                                                      UMShareToSms,
-                                                                      UMShareToWechatSession,
-                                                                      UMShareToWechatTimeline,
-                                                                      UMShareToQQ,
-                                                                      UMShareToQzone];
-                                                 //如果得到分享完成回调，需要传递delegate参数
-                                                 [UMSocialSnsService presentSnsIconSheetView:wself
-                                                                                      appKey:kUMAppKey
-                                                                                   shareText:shareText
-                                                                                  shareImage:image
-                                                                             shareToSnsNames:shareTo
-                                                                                    delegate:wself];
-                                        
-                                                 
+                                                 [wself shareUmengWithString:shareText
+                                                                       image:image
+                                                                         url:wself.videoDetail.link
+                                                                    delegate:wself];
                                              }];
 
 }

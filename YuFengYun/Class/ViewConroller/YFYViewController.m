@@ -8,6 +8,7 @@
 
 #import "YFYViewController.h"
 #import "MBProgressHUD.h"
+#import "UMSocial.h"
 
 
 @interface LoadingView : UIImageView
@@ -344,4 +345,44 @@
 
 @end
 
+
+@implementation UIViewController (UMengSocial)
+
+- (void)shareUmengWithString:(NSString *)sendString image:(UIImage *)image url:(NSString *)url delegate:(id)delegate {
+    
+    NSArray *shareTo = @[UMShareToSina,
+                         UMShareToTencent,
+                         UMShareToEmail,
+                         UMShareToSms,
+                         UMShareToWechatSession,
+                         UMShareToWechatTimeline,
+                         UMShareToQQ,
+                         UMShareToQzone];
+    //如果得到分享完成回调，需要传递delegate参数
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:kUMAppKey
+                                      shareText:sendString
+                                     shareImage:image
+                                shareToSnsNames:shareTo
+                                       delegate:delegate];
+    
+    UMSocialExtConfig *config = [UMSocialData defaultData].extConfig;
+    /**
+     *  微信,朋友圈
+     */
+    config.wechatSessionData.url = url;
+    config.wechatSessionData.wxMessageType = UMSocialWXMessageTypeWeb;
+    
+    config.wechatTimelineData.url = url;
+    config.wechatTimelineData.wxMessageType = UMSocialWXMessageTypeWeb;
+    
+    /**
+     *  qqZone QQ
+     */
+    config.qqData.url = url;
+    
+    config.qzoneData.url = url;    
+}
+
+@end
 

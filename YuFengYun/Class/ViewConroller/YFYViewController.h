@@ -64,3 +64,8 @@ typedef NS_ENUM(NSInteger, CustomNavigationBarPosition) {
 @property (nonatomic, strong) UIButton *leftBarButton;
 @property (nonatomic, strong) UIButton *rightBarButton;
 @end
+
+
+@interface UIViewController (UMengSocial)
+- (void)shareUmengWithString:(NSString *)sendString image:(UIImage *)image url:(NSString *)url delegate:(id)delegate;
+@end
