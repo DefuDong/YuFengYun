@@ -70,29 +70,70 @@ static NSString *const baseURL = @"http://if.yufengyun.com/";
     NSString *urlString = [NSString stringWithFormat:@"%@%@", baseURL, port];
     ASIFormDataRequest *request = [[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
     
-    __weak id wReciver = reciver;
-    NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithCapacity:2];
-    if (wReciver)       [userInfo setObject:wReciver forKey:YFY_NET_REQUEST_RECEIVER];
-    if (tag.length)     [userInfo setObject:tag forKey:YFY_NET_REQUEST_TAG];
-    if (code.length)    [userInfo setObject:code forKey:YFY_NET_REQUEST_CODE];
-    if (port.length)    [userInfo setObject:port forKey:YFY_NET_REQUEST_PORT];
-    request.userInfo = userInfo;
+//    __weak id wReciver = reciver;
+//    NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithCapacity:2];
+//    if (wReciver)       [userInfo setObject:wReciver forKey:YFY_NET_REQUEST_RECEIVER];
+//    if (tag.length)     [userInfo setObject:tag forKey:YFY_NET_REQUEST_TAG];
+//    if (code.length)    [userInfo setObject:code forKey:YFY_NET_REQUEST_CODE];
+//    if (port.length)    [userInfo setObject:port forKey:YFY_NET_REQUEST_PORT];
+//    request.userInfo = userInfo;
     
     request.allowCompressedResponse = NO;
-//    request.shouldCompressRequestBody = YES;
-    request.delegate = self;
     
     NSDictionary *header = [self requestHeader:code];
     NSDictionary *requestDic = [self requsetData:parameters header:header];
     [request addPostValue:[requestDic JSONString] forKey:YFY_NET_PARAM];
     
-//    [request addRequestHeader:@"Content-Type" value:@"application/x-gzip"];    
-//    [request addRequestHeader:@"Content-Encoding" value:@"gzip"];    
+//    request.delegate = self;
+    __weak id wReciver = reciver;
+    __weak ASIFormDataRequest *wRequest = request;
+    [request setCompletionBlock:^{
+        NSString *jsonString = wRequest.responseString;
+        
+        NSError *error;
+        NSDictionary *responseDic = [jsonString objectFromJSONStringWithParseOptions:JKParseOptionNone error:&error];
+        
+        DEBUG_LOG_NET(@"\nreciver:%@ \ncode:%@\nport:%@ \ntag:%@\n%@, %@\n%@",
+                      NSStringFromClass([wReciver class]), code, port, tag,
+                      [[responseDic objectForKey:@"rspHeader"] objectForKey:@"rspDesc"],
+                      [Utility errorDes:[[responseDic objectForKey:@"rspHeader"] objectForKey:@"rspCode"]],
+                      responseDic);
+        
+        if (error || !responseDic) DEBUG_LOG_NET(@"ERROR!");
+        
+        NETResponse_Header *resHeader = [[NETResponse_Header alloc] init];
+        resHeader.responseDic = [responseDic objectForKey:YFY_NET_RSP_HEADER];
+        if ([resHeader.rspCode isEqualToString:YFY_NET_ERROR_CODE_SUCC]) {
+            if ([wReciver respondsToSelector:@selector(networkDidSuccess:port:tag:)]) {
+                [wReciver networkDidSuccess:responseDic port:port tag:tag];
+            }
+        }else {
+            if ([wReciver respondsToSelector:@selector(networkDidFail:port:tag:)]) {
+                [wReciver networkDidFail:responseDic port:port tag:tag];
+            }
+            
+            if ([resHeader.rspCode isEqualToString:@"10100003"]) {
+                [DATA setIsLogin:NO];
+                [LoginViewController login:nil];
+            } 
+        }
+    }];
+    
+    [request setFailedBlock:^{
+        
+        NSDictionary *errorDes = @{YFY_NET_RSP_DESC: [wRequest.error localizedDescription]};
+        
+        if ([wReciver respondsToSelector:@selector(networkDidFail:port:tag:)]) {
+            [wReciver networkDidFail:@{YFY_NET_RSP_HEADER: errorDes} port:port tag:tag];
+        }
+        DEBUG_LOG_FUN;
+    }];
+
     DEBUG_LOG_NET(@"\n%@\n%@", urlString, requestDic);
     
     [request startAsynchronous];
     
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+//    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 - (void)uploadImage:(UIImage *)image
